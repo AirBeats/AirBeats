@@ -524,6 +524,12 @@
     <string name="subscribed">Assinado</string>
     <string name="subscribe">Assinar</string>
     <string name="language">Idioma da aplicação</string>
+    <string name="search_language">Pesquisar idiomas…</string>
+    <string name="clear_language_search">Limpar busca por idioma</string>
+    <string name="applying_language">Aplicando…</string>
+    <string name="restarting_app">Reiniciando…</string>
+    <string name="no_language_results">Nenhum idioma encontrado</string>
+    <string name="try_another_language_term">Tente outro termo de busca</string>
     <string name="selection_mode_active">Modo de seleção ativo</string>
 
     <!-- Avatar Selection -->

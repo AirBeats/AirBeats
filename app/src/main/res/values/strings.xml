@@ -569,6 +569,12 @@
     <string name="subscribed">Subscribed</string>
     <string name="subscribe">Subscribe</string>
     <string name="language">Application language</string>
+    <string name="search_language">Search languages…</string>
+    <string name="clear_language_search">Clear language search</string>
+    <string name="applying_language">Applying…</string>
+    <string name="restarting_app">Restarting…</string>
+    <string name="no_language_results">No languages found</string>
+    <string name="try_another_language_term">Try another search term</string>
     <string name="selection_mode_active">Active selection mode</string>
 
 

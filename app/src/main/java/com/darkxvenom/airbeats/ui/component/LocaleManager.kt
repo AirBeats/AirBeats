@@ -222,7 +222,7 @@ class LocaleManager private constructor(private val context: Context) {
 
             locales.forEach { localeString ->
                 if (localeString.isNotEmpty()) {
-                    availableLocales.add(localeString)
+                    availableLocales.add(normalizeAssetLocaleCode(localeString))
                 }
             }
 
@@ -234,7 +234,7 @@ class LocaleManager private constructor(private val context: Context) {
                 val configs = res.assets.locales
                 configs.forEach { locale ->
                     if (locale.isNotEmpty()) {
-                        availableLocales.add(locale)
+                        availableLocales.add(normalizeAssetLocaleCode(locale))
                     }
                 }
             }
@@ -308,6 +308,15 @@ class LocaleManager private constructor(private val context: Context) {
             language == "pt" && country == "BR" -> "pt-rBR"
             country.isNotEmpty() -> "$language-r$country"
             else -> language
+        }
+    }
+
+    private fun normalizeAssetLocaleCode(localeCode: String): String {
+        val languageTag = localeCode.replace('_', '-')
+        return if (languageTag.equals("pt-BR", ignoreCase = true)) {
+            "pt-rBR"
+        } else {
+            localeCode
         }
     }
 
@@ -724,7 +733,7 @@ private fun SearchBar(
                 decorationBox = { innerTextField ->
                     if (query.isEmpty()) {
                         Text(
-                            text = "Buscar idioma...",
+                            text = stringResource(R.string.search_language),
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -744,7 +753,7 @@ private fun SearchBar(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Clear,
-                        contentDescription = "Limpiar búsqueda",
+                        contentDescription = stringResource(R.string.clear_language_search),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(18.dp)
                     )
@@ -773,7 +782,7 @@ private fun ChangeStateIndicator(
             )
             Spacer(modifier = Modifier.width(12.dp))
             Text(
-                text = "Aplicando...",
+                text = stringResource(R.string.applying_language),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -786,7 +795,7 @@ private fun ChangeStateIndicator(
             )
             Spacer(modifier = Modifier.width(12.dp))
             Text(
-                text = "Reiniciando...",
+                text = stringResource(R.string.restarting_app),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -803,12 +812,12 @@ private fun EmptySearchResult(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Sin resultados",
+            text = stringResource(R.string.no_language_results),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Text(
-            text = "Prueba con otro término",
+            text = stringResource(R.string.try_another_language_term),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
             modifier = Modifier.padding(top = 4.dp)
