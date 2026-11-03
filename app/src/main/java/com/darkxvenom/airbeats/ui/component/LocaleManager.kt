@@ -360,10 +360,18 @@ class LocaleManager private constructor(private val context: Context) {
             availableLocaleCodes.forEach { localeCode ->
                 try {
                     val locale = parseLocaleCode(localeCode)
-                    val displayName = locale.getDisplayLanguage(Locale.ENGLISH)
-                        .replaceFirstChar { it.uppercase() }
-                    val nativeName = locale.getDisplayLanguage(locale)
-                        .replaceFirstChar { it.uppercase() }
+                    val displayName = if (localeCode == "pt-rBR") {
+                        "Português (Brazil)"
+                    } else {
+                        locale.getDisplayLanguage(Locale.ENGLISH)
+                            .replaceFirstChar { it.uppercase() }
+                    }
+                    val nativeName = if (localeCode == "pt-rBR") {
+                        displayName
+                    } else {
+                        locale.getDisplayLanguage(locale)
+                            .replaceFirstChar { it.uppercase() }
+                    }
 
                     // Obtener metadata (bandera y estado)
                     val metadata = LANGUAGE_METADATA[localeCode]
